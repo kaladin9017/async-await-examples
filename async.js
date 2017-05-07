@@ -12,17 +12,21 @@ function showGitHubUser(handle) {
     });
 }
 
-showGitHubUser('kaladin9017');
+// showGitHubUser('kaladin9017');
 
-/* The await operator takes a promise and pauses a function wxecution until the promise is executed */
+/*
+ * The await operator takes a promise and pauses a function wxecution until the promise is executed
+*/
 
 async function showGitHubUserAsync(handle) {
   const url = `https://api.github.com/users/${handle}`;
   const response = await fetch(url);
-  const user = await response.json();
-  console.log(user.name)
-  console.log(user.location)
+  return await response.json();
 
 }
 
-showGitHubUserAsync('kaladin9017');
+showGitHubUserAsync('kaladin9017')
+  .then(user => {
+    console.log(user.name);
+  })
+  .catch(err => { console.log(err)} )
